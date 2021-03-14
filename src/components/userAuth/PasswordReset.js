@@ -5,7 +5,7 @@ import {
     Route,
     Link
   } from "react-router-dom";
-import LandingPage from "../../pages/landingPage";
+import LandingPage from "../../pages/landingPage/landingPage";
 
 class PasswordReset extends Component {
     state = {  }
@@ -17,15 +17,8 @@ class PasswordReset extends Component {
     render() { 
         return ( 
             <>
-            <Router>
-                <Switch>
-                    <Route exact path="/resetpassword">
-                        <this.ResetText />
-                        <Link to="/">Back to log in</Link>
-                    </Route>
-                    <Route exact path="/" component={LandingPage} />
-                </Switch>
-            </Router>
+                <this.ResetText />
+                <Link to="/">Back to log in</Link>
             </>
          );
     }

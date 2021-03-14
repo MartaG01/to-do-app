@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import {FirebaseContext} from "../firebase";
+import {withFirebase} from "../firebase";
 
 class TestContext extends Component {
     state = { 
         text: null
      }
-    static contextType = FirebaseContext;
+    // static contextType = FirebaseContext;
     componentDidMount() {
-        this.context.db.collection("test").doc("testing").get().then((doc)=>{
+        this.props.firebase.db.collection("test").doc("testing").get().then((doc)=>{
             if(doc.exists){
                 this.setState({text: doc.data().database})
             } else {
@@ -17,16 +18,19 @@ class TestContext extends Component {
             console.log(error)
         })
     }
-    render() { 
+    
 
+    render() { 
         return ( 
             <>
-            {this.state.text}
+                <div>
+                {this.state.text}
+                </div>
+            
             </>
          );
     }
-}
+};
 
-
- 
-export default TestContext;
+const TestingContext=withFirebase(TestContext)
+export {TestingContext}

@@ -5,7 +5,7 @@ import {
     Route,
     Link
   } from "react-router-dom";
-import LandingPage from '../landingPage';
+
 
 class About extends Component {
     state = {  }
@@ -20,15 +20,10 @@ class About extends Component {
     }
     render() { 
         return ( 
-            <Router>
-                <Switch>
-                    <Route exact path="/about">
-                        <this.AboutText />
-                        <Link to="/">Back</Link>
-                    </Route>
-                    <Route exact path="/" component={LandingPage} />
-                </Switch>
-            </Router>
+            <>
+                <this.AboutText />
+                <Link to="/">Back</Link>
+            </>
          );
     }
 }

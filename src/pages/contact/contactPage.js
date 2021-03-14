@@ -5,7 +5,7 @@ import {
     Route,
     Link
   } from "react-router-dom";
-import LandingPage from '../landingPage';
+
 
 class Contact extends Component {
     state = {  }
@@ -17,15 +17,10 @@ class Contact extends Component {
     }
     render() { 
         return ( 
-            <Router>
-                        <Switch>
-                            <Route exact path="/contact">
-                               <this.ContactText />
-                               <Link to="/">Back</Link>
-                            </Route>
-                            <Route exact path="/" component={LandingPage} />
-                        </Switch>
-                    </Router>
+            <>
+            <this.ContactText />
+            <Link to="/">Back</Link>
+            </>
          );
     }
 }
