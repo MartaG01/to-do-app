@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import {LogIn} from "../../components/userAuth";
+import {SignIn} from "../../components/userAuth";
+
 
 class LandingPage extends Component {
     state = {  }
@@ -12,9 +13,7 @@ class LandingPage extends Component {
                 <h2>Log in or register - it's free</h2>
             </article>
             <article>
-                <div>
-                    <LogIn />
-                </div>
+                <SignIn />
             </article>
             <div>
                 <h3>Don't have an account?</h3>
