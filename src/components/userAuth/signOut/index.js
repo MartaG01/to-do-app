@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {withFirebase} from "../firebase";
+import {withFirebase} from "../../firebase";
 import {withRouter} from "react-router-dom";
 
 class SignOut extends Component {

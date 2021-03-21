@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withFirebase} from "../../firebase";
-import {Link, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 
 const initialState={
     email: "",
@@ -12,7 +12,8 @@ class SignInForm extends Component {
     constructor(props){
         super(props)
         this.state = { 
-            ...initialState
+            ...initialState,
+            invalidText: null
          }
          this.onChange=this.onChange.bind(this);
          this.onSubmit=this.onSubmit.bind(this);
@@ -23,12 +24,17 @@ class SignInForm extends Component {
 
     onSubmit(event){
         event.preventDefault();
-        this.props.firebase.signIn(this.state.email, this.state.password).then(()=>{
-            this.setState({...initialState});
-            this.props.history.push("/home");
-        }).catch(error=>{
-            this.setState({error});
-        })
+        if(this.state.email===""||!this.state.email.includes("@")||this.state.password===""){
+            this.setState({invalidText: "Invalid input"})
+        } else {
+            this.props.firebase.signIn(this.state.email, this.state.password).then(()=>{
+                this.setState({...initialState});
+                this.props.history.push("/home");
+            }).catch(error=>{
+                this.setState({error});
+            })
+        }
+        
     }
 
     LoginFormField(inputName, inputType){
@@ -47,6 +53,8 @@ class SignInForm extends Component {
                 {this.LoginFormField("password", "password")}
                 <button type="submit">Login</button>
             </form>
+            {this.state.invalidText&&<p>{this.state.invalidText}</p>}
+            {this.state.error&&<p>Server error, try again later</p>}
             </>
          );
     }

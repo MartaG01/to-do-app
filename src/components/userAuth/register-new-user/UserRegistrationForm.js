@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, Redirect, useHistory, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import {withFirebase} from '../../firebase/index';
 
 const initialState= {
@@ -16,7 +16,8 @@ class RegistrationForm extends Component {
     constructor(props){
         super(props)
         this.state = { 
-            ...initialState
+            ...initialState,
+            inputTextInvalid: null
         }
         
     }
@@ -32,10 +33,15 @@ class RegistrationForm extends Component {
 
     onSubmit=(event)=>{
         event.preventDefault();
-        console.log(this.state)
         if(this.state.username===""||this.state.usersurname===""||this.state.email===""||!this.state.email.includes("@")||(this.state.passwordOne!==this.state.passwordTwo)||this.state.checkboxCheck===false){
-            console.log("form not submitted")
-            
+            // Array.from(document.querySelectorAll("input")).forEach(
+            //     input=>(input.value="")
+            // );
+            this.setState({
+                ...initialState,
+                inputTextInvalid: "Invalid input"
+            })
+        
             
         } else {
             console.log("form submitted")
@@ -77,9 +83,9 @@ class RegistrationForm extends Component {
     }
     
     render() { 
-        
+        console.log(this.state.error)
         return ( 
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit} onReset={this.onReset}>
                 {this.InputField("username", "Name")}
                 {this.InputField("usersurname", "Surname")}
                 {this.InputField("email", "Email")}
@@ -89,6 +95,8 @@ class RegistrationForm extends Component {
                 <input type="checkbox" checked={this.state.checkboxCheck} onChange={this.onCheck}/>
                 </label>                
                 <button type="submit">Submit</button>
+                {this.state.inputTextInvalid && <p>{this.state.inputTextInvalid}</p>}
+                {this.state.error&&<p>An error occured, please try again later</p>}
             </form>
          );
     }

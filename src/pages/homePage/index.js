@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {withAuth} from "../../components/userAuth";
-import SignOut from "../../components/userAuth/SignOut";
+import {withAuth, SignOut} from "../../components/userAuth";
 
 class HomePage extends Component {
     state = {  }

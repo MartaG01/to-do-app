@@ -3,15 +3,10 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import {TestingContext} from "./components/testing/TestContext";
-import LandingPage from "./pages/landingPage/landingPage";
-import {Register} from "./components/userAuth";
-import About from "./pages/about/aboutPage";
-import Contact from "./pages/contact/contactPage";
-import PasswordReset from "./components/userAuth/PasswordReset";
-import Home from "./pages/homePage/homePage";
+import {Register, PasswordReset} from "./components/userAuth";
+import {About, Contact, Home, LandingPage} from "./pages";
 
 
 const App =()=> {

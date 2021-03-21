@@ -1,7 +1,8 @@
-import PasswordReset from "./PasswordReset";
+import PasswordReset from "./passwordReset";
 import Register from "./register-new-user";
 import withAuth from "./context";
-import SignIn from "./signIn/SignIn";
+import SignInForm from "./signIn";
+import SignOut from "./signOut";
 
 
-export {SignIn, PasswordReset, Register, withAuth}
+export {PasswordReset, Register, withAuth, SignInForm, SignOut}
