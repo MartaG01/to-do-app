@@ -5,8 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import {TestingContext} from "./components/testing/TestContext";
-import {Register, PasswordReset} from "./components/userAuth";
-import {About, Contact, Home, LandingPage} from "./pages";
+import {About, Contact, Home, LandingPage, PasswordReset, Register} from "./pages";
 
 
 const App =()=> {

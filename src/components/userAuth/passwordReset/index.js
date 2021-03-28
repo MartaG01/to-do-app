@@ -7,7 +7,7 @@ const initialState={
     error: null
 }
 
-class PasswordReset extends Component {
+class PasswordResetForm extends Component {
     constructor(props){
         super(props)
         this.state = { 
@@ -60,4 +60,4 @@ class PasswordReset extends Component {
     }
 }
  
-export default withRouter(withFirebase(PasswordReset));
+export default withRouter(withFirebase(PasswordResetForm));

@@ -1,13 +1,19 @@
 import React, {Component} from 'react';
-import {withAuth, SignOut} from "../../components/userAuth";
+import {AddTask, SignOut} from "../../components";
+import {withAuth} from "../../components/userAuth";
 
 class HomePage extends Component {
-    state = {  }
+    constructor(props){
+        super(props)
+    }
+    
     render() { 
+        // console.log(this.props.firebase.auth.currentUser.uid)
         return ( 
             <>
             <p>home page</p>
             <SignOut />
+            <AddTask />
             </>
          );
     }

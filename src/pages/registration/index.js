@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import UserRegistrationForm from "./UserRegistrationForm";
+import {UserRegistrationForm} from "../../components";
 
 
 class Register extends Component {

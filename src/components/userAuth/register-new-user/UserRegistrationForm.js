@@ -46,9 +46,20 @@ class RegistrationForm extends Component {
         } else {
             console.log("form submitted")
             this.props.firebase.createUser(this.state.email, this.state.passwordOne).then(authUser=>{
-                
-                this.setState({...initialState});
-                this.props.history.push("/home");
+                // this.props.history.push("/home");
+                let user=authUser.user.uid
+                this.props.firebase.db.collection("users").doc(user).set({
+                    name: this.state.username,
+                    surname: this.state.usersurname,
+                    tasks: []
+                })
+                .then(()=>{
+                    this.setState({...initialState});
+                    this.props.history.push("/home");
+                })
+                .catch((error)=>{
+                    this.setState({error: error})
+                })
             })
             .catch(error=>{
                 this.setState({error: error})
@@ -83,7 +94,6 @@ class RegistrationForm extends Component {
     }
     
     render() { 
-        console.log(this.state.error)
         return ( 
             <form onSubmit={this.onSubmit} onReset={this.onReset}>
                 {this.InputField("username", "Name")}
