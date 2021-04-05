@@ -32,6 +32,7 @@ class SignInForm extends Component {
                 this.props.history.push("/home");
             }).catch(error=>{
                 this.setState({error});
+                console.log(error.message)
             })
         }
         
@@ -54,7 +55,7 @@ class SignInForm extends Component {
                 <button type="submit">Login</button>
             </form>
             {this.state.invalidText&&<p>{this.state.invalidText}</p>}
-            {this.state.error&&<p>Server error, try again later</p>}
+            {this.state.error&&<p>{this.state.error.message}</p>}
             </>
          );
     }

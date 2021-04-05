@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AddTask, SignOut} from "../../components";
+import {AddTask, SignOut, TaskList} from "../../components";
 import {withAuth} from "../../components/userAuth";
 
 class HomePage extends Component {
@@ -14,6 +14,7 @@ class HomePage extends Component {
             <p>home page</p>
             <SignOut />
             <AddTask />
+            <TaskList />
             </>
          );
     }
