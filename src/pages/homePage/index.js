@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {AddTask, SignOut, TaskList} from "../../components";
 import {withAuth} from "../../components/userAuth";
+import Typography from "@material-ui/core/Typography";
 
 class HomePage extends Component {
     constructor(props){
@@ -8,11 +9,19 @@ class HomePage extends Component {
     }
     
     render() { 
-        // console.log(this.props.firebase.auth.currentUser.uid)
+        
         return ( 
             <>
-            <p>home page</p>
             <SignOut />
+            <Typography
+                variant="h3"
+                color="primary"
+                align="center"
+                gutterBottom
+            >
+                To do or not to do:
+            </Typography>
+            
             <AddTask />
             <TaskList />
             </>

@@ -37,10 +37,14 @@ class RegistrationForm extends Component {
             // Array.from(document.querySelectorAll("input")).forEach(
             //     input=>(input.value="")
             // );
-            this.setState({
-                ...initialState,
+            // this.setState({
+            //     ...initialState,
+            //     inputTextInvalid: "Invalid input"
+            // })
+            this.setState((prevState)=>{return({
+                ...prevState,
                 inputTextInvalid: "Invalid input"
-            })
+            })})
         
             
         } else {
@@ -58,11 +62,13 @@ class RegistrationForm extends Component {
                     this.props.history.push("/home");
                 })
                 .catch((error)=>{
-                    this.setState({error: error})
+                    this.setState({error: error});
+                    console.log("login error")
                 })
             })
             .catch(error=>{
                 this.setState({error: error})
+                console.log("login error in catch")
             });
             }
             

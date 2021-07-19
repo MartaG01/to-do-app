@@ -1,12 +1,20 @@
 import React, {Component} from 'react';
 import {withAuth} from "../../components/userAuth";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+
 
 let initialState={
-    date: new Date().toLocaleString(),
+    // date: new Date().toLocaleString(),
+    date: "",
     title: "",
     description: "",
     error: null
 }
+
+
 
 class AddTaskElement extends Component {
     constructor(props){
@@ -17,13 +25,22 @@ class AddTaskElement extends Component {
          }
     }
     
+    
     addTask=(event)=>{
         event.preventDefault();
-        this.props.firebase.db.collection("users").doc(this.props.firebase.auth.currentUser.uid).update({
-            tasks: this.props.firebase.db.Pd.firebase_.firestore.FieldValue.arrayUnion({...this.state,})
+        // this.props.firebase.db.collection("users").doc(this.props.firebase.auth.currentUser.uid).update({
+        //     tasks: this.props.firebase.db.Pd.firebase_.firestore.FieldValue.arrayUnion({...this.state,})
+        // this.props.firebase.db.collection(this.props.firebase.auth.currentUser.uid).doc(this.state.date).set({
+        //     ...this.state
+        // })
+        this.props.firebase.db.collection(this.props.firebase.auth.currentUser.uid).add({
+            ...this.state
+        })
+            
         
         
-    }).then(()=>{
+        
+    .then(()=>{
         this.setState({...initialState})
          Array.from(document.querySelectorAll("input")).forEach(
                 input=>(input.value="")
@@ -39,16 +56,51 @@ class AddTaskElement extends Component {
     }
     render() { 
         return ( 
-            <form onSubmit={this.addTask}>
-                <label htmlFor="date">Set due date: </label>
-                <input type="date" name="date" value={this.state.date} onChange={this.onChange}/>
-                <label htmlFor="title">Task title: </label>
-                <input type="text" placeholder="title" name="title" value={this.state.title} onChange={this.onChange}/>
-                <label htmlFor="description">and some description...</label>
-                <input type="text" placeholder="description" name="description" value={this.state.description} onChange={this.onChange}/>
-            <button type="submit">Add task</button>
+            <Typography
+                variant="subtitle2"
+                align="center"
+            >
+            <form onSubmit={this.addTask} autoComplete="off">
+                <TextField 
+                helperText="Set due date" 
+                label="date"
+                type="text" 
+                name="date" 
+                color="primary"
+                onFocus={(e)=>{e.target.type="date"}}
+                onBlur={(e)=>{e.target.type="text"}}
+                value={this.state.date} 
+                onChange={this.onChange}
+                />
+                
+                <TextField 
+                label="title" 
+                type="text" 
+                helperText="Name your task"
+                name="title" 
+                value={this.state.title} 
+                onChange={this.onChange}
+                />
+                <TextField 
+                label="text" 
+                type="text"
+                helperText="and some description..." 
+                multiline
+                rows={8}
+                name="description" 
+                value={this.state.description} 
+                onChange={this.onChange}
+                />
+            <Button 
+            type="submit"
+            variant="contained"
+            endIcon={<AddCircleIcon />}
+            >
+                Add task
+            </Button>
             {this.state.error&& <p>An error occured, please try again later</p>}
             </form>
+            </Typography>
          );
     }
 }

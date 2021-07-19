@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import {withFirebase} from "../../firebase";
 import {withRouter} from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import TextField from '@material-ui/core/TextField';
+import { Grid, Typography } from '@material-ui/core';
+import { spacing } from '@material-ui/system';
 
 const initialState={
     email: "",
@@ -40,20 +44,40 @@ class SignInForm extends Component {
 
     LoginFormField(inputName, inputType){
         return(
-            <label>{inputName}
-                <input name={inputName} value={this.state.inputName} onChange={this.onChange} type={inputType} placeholder={inputName} />
-            </label>
+            
+                <TextField 
+                label={inputName}
+                variant="outlined" 
+                name={inputName} 
+                value={this.state.inputName} 
+                onChange={this.onChange} 
+                type={inputType}
+                required 
+                />
+
         )
     }
     
     render() { 
         return ( 
-            <>
-            <form onSubmit={this.onSubmit}>
+            <>         
+            <form autoComplete="off" onSubmit={this.onSubmit}>
+                <Grid item xs={12} style={{margin: 10}}>
                 {this.LoginFormField("email", "text")}
+                </Grid>
+                <Grid item xs={12} style={{margin: 10}}>
                 {this.LoginFormField("password", "password")}
-                <button type="submit">Login</button>
+                </Grid>
+                <Grid item xs={12} container style={{display:"flex", justifyContent:"center", margin: 10}}>
+                <Button
+                    variant="contained"
+                    type="submit"
+                    color="primary"
+                    >Login
+                </Button>
+                </Grid>
             </form>
+            
             {this.state.invalidText&&<p>{this.state.invalidText}</p>}
             {this.state.error&&<p>{this.state.error.message}</p>}
             </>
