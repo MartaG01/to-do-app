@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {withFirebase} from '../../firebase/index';
+import { Button, Grid, TextField } from '@material-ui/core';
+import { Checkbox } from '@material-ui/core';
+import { FormControlLabel } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 const initialState= {
     username: "",
@@ -79,19 +83,53 @@ class RegistrationForm extends Component {
        let field = null;
        if (propName==="username"){
            field=
-           <label>{placeHolder}
+           <Grid item container justify="center">
+               <TextField 
+                    label={placeHolder} 
+                    name={propName} 
+                    value={this.state.propName} 
+                    type="text" 
+                    onChange={this.onChange} 
+                    autoFocus={true} 
+                    variant="outlined" 
+                    required 
+               />
+           {/* <label>{placeHolder}
            <input name={propName} value={this.state.propName} type="text" placeholder={placeHolder} onChange={this.onChange} autoFocus={true} />
-           </label>
+           </label> */}
+           </Grid>
        } else if (propName.includes("password")) {
         field=
-        <label>{placeHolder}
+        <Grid item container justify="center">
+            <TextField 
+                label={placeHolder} 
+                name={propName} 
+                value={this.state.propName} 
+                type="password" 
+                onChange={this.onChange} 
+                variant="outlined" 
+                required 
+            />
+        {/* <label>{placeHolder}
         <input name={propName} value={this.state.propName} type="password" placeholder={placeHolder} onChange={this.onChange} />
-        </label>
+        </label> */}
+        </Grid>
        } else {
            field=
-        <label>{placeHolder}
-        <input name={propName} value={this.state.propName} type="text" placeholder={placeHolder} onChange={this.onChange} />
-        </label>
+           <Grid item container justify="center">
+               <TextField 
+                label={placeHolder} 
+                name={propName} 
+                value={this.state.propName} 
+                type="text" 
+                onChange={this.onChange} 
+                variant="outlined" 
+                required 
+            />
+                {/* <label>{placeHolder}
+                <input name={propName} value={this.state.propName} type="text" placeholder={placeHolder} onChange={this.onChange} />
+                </label> */}
+            </Grid>
        }
         return(
             
@@ -101,19 +139,66 @@ class RegistrationForm extends Component {
     
     render() { 
         return ( 
-            <form onSubmit={this.onSubmit} onReset={this.onReset}>
-                {this.InputField("username", "Name")}
-                {this.InputField("usersurname", "Surname")}
-                {this.InputField("email", "Email")}
-                {this.InputField("passwordOne", "Password")}
-                {this.InputField("passwordTwo", "Repeat password")}
-                <label>Agree to policy
-                <input type="checkbox" checked={this.state.checkboxCheck} onChange={this.onCheck}/>
-                </label>                
-                <button type="submit">Submit</button>
+            <Grid item container justify="center" alignItems="center" spacing={4}>
+                <Grid item xs={12}>
+                    <Typography
+                                variant="h6"
+                                color="primary"
+                                align="center"
+                    >
+                        Complete the registration form
+                    </Typography>
+
+                </Grid>
+            
+            <form autoComplete="off" onSubmit={this.onSubmit} onReset={this.onReset} style={{display: "flex", justifyContent: "center", alignItems: "center", width: "20rem"}}>
+                <Grid container item justify="center" alignItems="center" spacing={1}>
+                <Grid item xs={12}>
+                    {this.InputField("username", "Name")}
+                </Grid>
+                <Grid item xs={12}>
+                    {this.InputField("usersurname", "Surname")}
+                </Grid>
+                <Grid item xs={12}>
+                    {this.InputField("email", "Email")}
+                </Grid>
+                <Grid item xs={12}>
+                    {this.InputField("passwordOne", "Password")}
+                </Grid>
+                <Grid item xs={12}>
+                    {this.InputField("passwordTwo", "Repeat password")}
+                </Grid>
+                <Grid item container justify="center" xs={12}>
+                    {/* <label>Agree to policy terms
+                    <input type="checkbox" checked={this.state.checkboxCheck} onChange={this.onCheck}/>
+                    </label> */}
+                    <FormControlLabel control={
+                        <Checkbox
+                        inputProps={{"aria-label": "Agree to policy terms"}}
+                        checked={this.state.checkboxCheck}
+                        color="primary"
+                        onChange={this.onCheck}
+                    />
+                    }
+                    label="Agree to policy terms"
+                    />
+                </Grid> 
+                <Grid item container xs={12} justify="center">
+                    <Link to="/register/policyterms">Read the terms here</Link>
+                </Grid>    
+                <Grid item container justify="center" xs={12}>           
+                <Button 
+                    variant="contained"
+                    type="submit"
+                    color="primary">
+                        Submit
+                </Button>
                 {this.state.inputTextInvalid && <p>{this.state.inputTextInvalid}</p>}
                 {this.state.error&&<p>An error occured, please try again later</p>}
+                </Grid>
+                </Grid>
             </form>
+            </Grid>
          );
     }
 }

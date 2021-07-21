@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import {TestingContext} from "./components/testing/TestContext";
-import {About, Contact, Home, LandingPage, PasswordReset, Register} from "./pages";
+import {About, Contact, Home, LandingPage, PasswordReset, Register, Policyterms} from "./pages";
 
 
 const App =()=> {
@@ -22,6 +22,7 @@ const App =()=> {
                     <Route exact path="/about" component={About} />
                     <Route exact path="/contact" component={Contact} />
                     <Route exact path="/home" component={Home} />
+                    <Route exact path="/register/policyterms" component={Policyterms} />
       </Switch>
     </Router>
 

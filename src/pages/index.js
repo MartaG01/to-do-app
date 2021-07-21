@@ -4,5 +4,6 @@ import Home from "./homePage";
 import LandingPage from "./landingPage";
 import PasswordReset from "./passwordReset";
 import Register from "./registration";
+import Policyterms from "./policyterms";
 
-export {About, Contact, Home, LandingPage, PasswordReset, Register} 
+export {About, Contact, Home, LandingPage, PasswordReset, Register, Policyterms} 
