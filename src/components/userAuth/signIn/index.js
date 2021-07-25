@@ -62,7 +62,7 @@ class SignInForm extends Component {
         return ( 
             <>         
             <form autoComplete="off" onSubmit={this.onSubmit}>
-                <Grid item xs={12} style={{margin: 10}}>
+                <Grid item xs={12} style={{padding: 10}}>
                 {this.LoginFormField("email", "text")}
                 </Grid>
                 <Grid item xs={12} style={{margin: 10}}>

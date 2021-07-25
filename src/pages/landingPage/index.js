@@ -12,7 +12,7 @@ class LandingPage extends Component {
     LandingText() {
         return(
             <main>
-                <Grid container justifycontent="center" alignItems="center" spacing={10} style={{marginTop: "5rem"}}>
+                <Grid container justifycontent="center" alignItems="center" spacing={10} style={{paddingTop: "5rem"}}>
                     <Grid item xs={12}>               
                         <Typography 
                         variant="h2"
@@ -29,6 +29,7 @@ class LandingPage extends Component {
                             variant="h3"
                             color="primary"
                             align="center"
+                            style={{padding: "1rem"}}
                         >
                             Log in or register - it's free
                         </Typography>
