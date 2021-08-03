@@ -28,11 +28,7 @@ class AddTaskElement extends Component {
     
     addTask=(event)=>{
         event.preventDefault();
-        // this.props.firebase.db.collection("users").doc(this.props.firebase.auth.currentUser.uid).update({
-        //     tasks: this.props.firebase.db.Pd.firebase_.firestore.FieldValue.arrayUnion({...this.state,})
-        // this.props.firebase.db.collection(this.props.firebase.auth.currentUser.uid).doc(this.state.date).set({
-        //     ...this.state
-        // })
+        
         this.props.firebase.db.collection(this.props.firebase.auth.currentUser.uid).add({
             ...this.state
         })

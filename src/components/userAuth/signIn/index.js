@@ -65,10 +65,10 @@ class SignInForm extends Component {
                 <Grid item xs={12} style={{padding: 10}}>
                 {this.LoginFormField("email", "text")}
                 </Grid>
-                <Grid item xs={12} style={{margin: 10}}>
+                <Grid item xs={12} style={{padding: 10}}>
                 {this.LoginFormField("password", "password")}
                 </Grid>
-                <Grid item xs={12} container style={{display:"flex", justifyContent:"center", margin: 10}}>
+                <Grid item xs={12} container style={{display:"flex", justifyContent:"center", padding: 10}}>
                 <Button
                     variant="contained"
                     type="submit"

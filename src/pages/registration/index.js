@@ -8,7 +8,7 @@ class Register extends Component {
     render() { 
         return ( 
             <>
-                <Grid container justify="center" alignItems="flex-start" style={{marginTop: "5rem"}} spacing={10}>
+                <Grid container justify="center" alignItems="center" style={{height: "100vh"}}>
                 <UserRegistrationForm />
                 <Grid item xs={12}>
                 <Typography

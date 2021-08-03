@@ -38,13 +38,7 @@ class RegistrationForm extends Component {
     onSubmit=(event)=>{
         event.preventDefault();
         if(this.state.username===""||this.state.usersurname===""||this.state.email===""||!this.state.email.includes("@")||(this.state.passwordOne!==this.state.passwordTwo)||this.state.checkboxCheck===false){
-            // Array.from(document.querySelectorAll("input")).forEach(
-            //     input=>(input.value="")
-            // );
-            // this.setState({
-            //     ...initialState,
-            //     inputTextInvalid: "Invalid input"
-            // })
+            
             this.setState((prevState)=>{return({
                 ...prevState,
                 inputTextInvalid: "Invalid input"
@@ -54,7 +48,7 @@ class RegistrationForm extends Component {
         } else {
             console.log("form submitted")
             this.props.firebase.createUser(this.state.email, this.state.passwordOne).then(authUser=>{
-                // this.props.history.push("/home");
+                
                 let user=authUser.user.uid
                 this.props.firebase.db.collection("users").doc(user).set({
                     name: this.state.username,
@@ -94,9 +88,7 @@ class RegistrationForm extends Component {
                     variant="outlined" 
                     required 
                />
-           {/* <label>{placeHolder}
-           <input name={propName} value={this.state.propName} type="text" placeholder={placeHolder} onChange={this.onChange} autoFocus={true} />
-           </label> */}
+           
            </Grid>
        } else if (propName.includes("password")) {
         field=
@@ -110,10 +102,24 @@ class RegistrationForm extends Component {
                 variant="outlined" 
                 required 
             />
-        {/* <label>{placeHolder}
-        <input name={propName} value={this.state.propName} type="password" placeholder={placeHolder} onChange={this.onChange} />
-        </label> */}
+        
         </Grid>
+       } else if (propName==="email"){
+
+            field=
+            <Grid item container justify="center">
+               <TextField 
+                label={placeHolder} 
+                name={propName} 
+                value={this.state.propName} 
+                type="email" 
+                onChange={this.onChange} 
+                variant="outlined" 
+                required 
+            />
+                
+            </Grid>
+
        } else {
            field=
            <Grid item container justify="center">
@@ -126,9 +132,7 @@ class RegistrationForm extends Component {
                 variant="outlined" 
                 required 
             />
-                {/* <label>{placeHolder}
-                <input name={propName} value={this.state.propName} type="text" placeholder={placeHolder} onChange={this.onChange} />
-                </label> */}
+                
             </Grid>
        }
         return(
@@ -139,10 +143,10 @@ class RegistrationForm extends Component {
     
     render() { 
         return ( 
-            <Grid item container justify="center" alignItems="center" spacing={4}>
+            <Grid item container justify="center" alignItems="center" spacing={10}>
                 <Grid item xs={12}>
                     <Typography
-                                variant="h6"
+                                variant="h4"
                                 color="primary"
                                 align="center"
                     >
@@ -169,9 +173,7 @@ class RegistrationForm extends Component {
                     {this.InputField("passwordTwo", "Repeat password")}
                 </Grid>
                 <Grid item container justify="center" xs={12}>
-                    {/* <label>Agree to policy terms
-                    <input type="checkbox" checked={this.state.checkboxCheck} onChange={this.onCheck}/>
-                    </label> */}
+                    
                     <FormControlLabel control={
                         <Checkbox
                         inputProps={{"aria-label": "Agree to policy terms"}}
@@ -193,8 +195,11 @@ class RegistrationForm extends Component {
                     color="primary">
                         Submit
                 </Button>
-                {this.state.inputTextInvalid && <p>{this.state.inputTextInvalid}</p>}
-                {this.state.error&&<p>An error occured, please try again later</p>}
+                <Grid item container xs={12} justify="center">
+                    {this.state.inputTextInvalid && <p style={{color: "red"}}>{this.state.inputTextInvalid}</p>}
+                    {this.state.error&&<p style={{color: "red"}}>An error occured, please try again later</p>}
+                </Grid>
+                
                 </Grid>
                 </Grid>
             </form>
