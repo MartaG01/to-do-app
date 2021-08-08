@@ -6,6 +6,7 @@ import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 
 import EditIcon from '@material-ui/icons/Edit';
 import { Description } from '@material-ui/icons';
+import { Grid, List, ListItem, Typography } from '@material-ui/core';
 
 
 const TaskList=(props)=>{
@@ -101,13 +102,13 @@ const TaskList=(props)=>{
  
     
         return(
-            tasks.length!==0 &&<>
-            
-                <ul>
-                    the list
+            tasks.length!==0 &&
+                <Grid item container justify="center" alignItems="center" xs={12}>
+                <List>
+                    
                     {tasks.map((elem)=>(
                 
-                        <li key={elem.id}>
+                        <ListItem key={elem.id}>
                             {editValue===elem.id ? 
                             
                             <form autoComplete="off">
@@ -119,40 +120,73 @@ const TaskList=(props)=>{
                                 variant="contained"
                                 endIcon={<EditIcon />}
                                 onClick={()=>{editTask(elem.id)}}
+                                color="primary"
                             >
                                 {editButton}
                             </Button>
                             </form>   
                             
                              : 
-                             <>
-                             <div>Due date: {elem.data().date}</div>
-                             <div>Title: {elem.data().title}</div>
-                             <div>description: {elem.data().description}</div>
-                             <div>time left: {Math.floor((new Date(Date.parse(elem.data().date))-date)/86400000)+1}</div><Button
-                                variant="contained"
-                                endIcon={<RemoveCircleIcon />}
-                                onClick={()=>{removeTask(elem.id)}}
-                            >
-                                remove
-                            </Button>
-                            <Button
-                                variant="contained"
-                                endIcon={<EditIcon />}
-                                onClick={()=>{editTask(elem.id)}}
-                            >
-                                Edit
-                            </Button>
-                             </>
+                             <Grid container spacing={5} justify="center" style={{marginTop: "2rem", width: "100vw", display: "flex"}}>
+                                 <Grid item container xs={12} md={6} style={{padding: "2rem"}} justify="center">
+                                    <Grid item container xs={12} md={6} justify="center">
+                                        <Typography>
+                                        Title: {elem.data().title}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item container xs={12} md={6} justify="center">
+                                    <Typography>
+                                        Due date: {elem.data().date}
+                                    </Typography>
+                                    </Grid>
+                                    <Grid item container xs={12} md={6} justify="center">
+                                        <Typography > 
+                                            <Typography align="center">Description: </Typography> 
+                                            <Typography >{elem.data().description}</Typography>
+                                        </Typography>
+                                        
+                                    </Grid>
+                                    <Grid item container xs={12} md={6} justify="center">
+                                        Days left: {Math.floor((new Date(Date.parse(elem.data().date))-date)/86400000)+1}
+                                    </Grid>
+                                 </Grid>
+                                
+                                <Grid item container xs={12} md={4} spacing={2} justify="center" alignItems="center">
+                                    <Grid item container justify="center" xs={12} md={3}>
+                                        <Button
+                                            variant="contained"
+                                            endIcon={<RemoveCircleIcon />}
+                                            onClick={()=>{removeTask(elem.id)}}
+                                            color="primary"
+                                            >
+                                            remove
+                                        </Button>
+                                    </Grid>
+                                    <Grid item container justify="center" xs={12} md={3}>
+                                        <Button
+                                            variant="contained"
+                                            endIcon={<EditIcon />}
+                                            onClick={()=>{editTask(elem.id)}}
+                                            color="primary"
+                                        >
+                                        Edit
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                                
+                            
+                             </Grid>
                                 }
                             
                             
                             
                             
-                        </li>
+                        </ListItem>
                     ))}
-                </ul>
-            </>
+                </List>
+                </Grid>
+                
+           
             
         )
 

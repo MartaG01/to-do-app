@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {AddTask, SignOut, TaskList} from "../../components";
+import {AddTask, SignOut, TaskList, TaskCreation} from "../../components";
 import {withAuth} from "../../components/userAuth";
 import Typography from "@material-ui/core/Typography";
+import { Grid } from '@material-ui/core';
 
 class HomePage extends Component {
     constructor(props){
@@ -11,8 +12,9 @@ class HomePage extends Component {
     render() { 
         
         return ( 
-            <>
+            <Grid container justify="center" alignItems="center">
             <SignOut />
+            <Grid item xs={12}>
             <Typography
                 variant="h3"
                 color="primary"
@@ -22,9 +24,16 @@ class HomePage extends Component {
                 To do or not to do:
             </Typography>
             
-            <AddTask />
-            <TaskList />
-            </>
+            </Grid>
+            <Grid item container xs={12} justify="center" >
+                <TaskCreation />
+            </Grid>
+            <Grid item container xs={12}  justify="center">
+                <TaskList />
+            </Grid>
+            {/* <AddTask /> */}
+            
+            </Grid>
          );
     }
 }

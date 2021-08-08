@@ -4,10 +4,11 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import { Grid } from '@material-ui/core';
 
 
 let initialState={
-    // date: new Date().toLocaleString(),
+    
     date: "",
     title: "",
     description: "",
@@ -52,14 +53,15 @@ class AddTaskElement extends Component {
     }
     render() { 
         return ( 
-            <Typography
-                variant="subtitle2"
-                align="center"
-            >
+            
+            <Grid item container justify="center" alignItems="center" xs={12} md={6} style={{display: "flex"}}>
+            
             <form onSubmit={this.addTask} autoComplete="off">
+            <Grid item container justify="center" alignItems="center" direction="column" xs={12} spacing={2}>
+                <Grid item>
                 <TextField 
-                helperText="Set due date" 
-                label="date"
+                // helperText="Set due date" 
+                label="due date"
                 type="text" 
                 name="date" 
                 color="primary"
@@ -67,36 +69,50 @@ class AddTaskElement extends Component {
                 onBlur={(e)=>{e.target.type="text"}}
                 value={this.state.date} 
                 onChange={this.onChange}
+                variant="outlined"
                 />
-                
+                </Grid>
+                <Grid item>
                 <TextField 
-                label="title" 
+                label="task title" 
                 type="text" 
-                helperText="Name your task"
                 name="title" 
                 value={this.state.title} 
                 onChange={this.onChange}
+                variant="outlined"
                 />
+                </Grid>
+                <Grid item style={{width: "100%"}}>
                 <TextField 
-                label="text" 
-                type="text"
-                helperText="and some description..." 
+                label="description" 
+                type="text" 
                 multiline
                 rows={8}
                 name="description" 
                 value={this.state.description} 
                 onChange={this.onChange}
+                variant="outlined"
+                style={{width: "100%"}}
                 />
-            <Button 
-            type="submit"
-            variant="contained"
-            endIcon={<AddCircleIcon />}
-            >
-                Add task
-            </Button>
-            {this.state.error&& <p>An error occured, please try again later</p>}
+                </Grid>
+                <Grid item container justify="center" alignItems="center" >
+                    <Button 
+                    type="submit"
+                    variant="contained"
+                    endIcon={<AddCircleIcon />}
+                    color="primary"
+                    >
+                    Add task
+                </Button>
+                </Grid>
+                <Grid item xs={12} justify="center">
+                    {this.state.error&& <p>An error occured, please try again later</p>}
+                </Grid>
+                </Grid>
+                
+            
             </form>
-            </Typography>
+            </Grid>
          );
     }
 }

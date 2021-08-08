@@ -1,6 +1,8 @@
+import { Button, Grid, Typography } from '@material-ui/core';
 import React, {Component} from 'react';
 import {Link, withRouter} from "react-router-dom";
 import { withFirebase } from '../../firebase';
+import { TextField } from '@material-ui/core';
 
 const initialState={
     email: "",
@@ -18,9 +20,13 @@ class PasswordResetForm extends Component {
     
     ResetText=()=>{
         return(
-            <div>
-                <h2>Reset Your Password</h2>
-            </div>
+            <Typography
+                variant="h6"
+                align="center"
+                color="primary"
+            >
+                Reset your password
+            </Typography>
         )
     }
 
@@ -44,18 +50,46 @@ class PasswordResetForm extends Component {
 
     render() { 
         return ( 
-            <>
-                <this.ResetText />
-                <form onSubmit={this.onSubmit}>
-                    <label>Your email address: 
-                        <input type="text" name="email" value={this.state.email} placeholder="email" onChange={this.onChange}/>
-                    </label>
-                    <button type="submit">Reset password</button>
-                </form>
-                {this.state.invalidInputText&&<p>Invalid email</p>}
-                {this.state.error&&<p>Error, please try again later</p>}
-                <Link to="/">Back to log in</Link>
-            </>
+            <Grid container alignItems="center" justify="center" style={{height: "100vh"}}>
+                <Grid item container xs={12} justify="center">
+                    <this.ResetText />
+                </Grid>
+                <Grid item container xs={12} justify="center">
+                <Grid item container xs={12} justify="center">
+                    <form autoComplete="off" onSubmit={this.onSubmit}>
+                        <TextField
+                            label="Type in your email address"
+                            variant="outlined"
+                            name="email"
+                            type="email"
+                            value={this.state.email}
+                            onChange={this.onChange}
+                            required
+                        />
+                    </form>
+                    
+                </Grid>
+                <Grid item container xs={12} justify="center" style={{paddingTop: 20}}>
+                    <Button
+                            variant="contained"
+                            type="submit"
+                            color="primary"
+                    >
+                        Reset password
+                        
+                    </Button>
+                </Grid>
+                </Grid>
+                <Grid item container xs={12} justify="center">
+                    {this.state.invalidInputText&&<p>Invalid email</p>}
+                    {this.state.error&&<p>Error, please try again later</p>}
+                </Grid>
+                <Grid item container xs={12} justify="center">
+                    <Link to="/">Back to log in</Link>
+                </Grid>
+                
+                
+            </Grid>
          );
     }
 }
