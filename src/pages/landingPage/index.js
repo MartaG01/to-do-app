@@ -12,7 +12,7 @@ class LandingPage extends Component {
     LandingText() {
         return(
             <main>
-                <Grid container justifycontent="center" alignItems="center" spacing={10} style={{paddingTop: "5rem"}}>
+                <Grid container justify="center" alignItems="center">
                     <Grid item xs={12}>               
                         <Typography 
                         variant="h2"
@@ -41,8 +41,8 @@ class LandingPage extends Component {
                             </Grid>
                         
                     </Grid>
-                    <Grid item xs={12} sm={3}/>
-                    <Grid item xs={12} sm={3}>
+                    <Grid item xs={12} />
+                    <Grid item xs={12} >
                         <Typography
                             variant="h6"
                             color="primary"
@@ -60,7 +60,7 @@ class LandingPage extends Component {
                     </Grid>
                 
             
-                    <Grid item xs={12} sm={3}>
+                    <Grid item xs={12} >
                         <Typography
                             variant="h6"
                             color="primary"
@@ -75,9 +75,9 @@ class LandingPage extends Component {
                         >
                             <Link to="/resetpassword">Click here to reset your password</Link>
                         </Typography>
-                        <Grid item xs={12} sm={3}/>
+                        <Grid item xs={12} />
                     </Grid>
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={12}>
                     <Typography
                         variant="h6"
                         color="primary"

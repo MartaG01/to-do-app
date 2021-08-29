@@ -7,20 +7,11 @@ import {UserRegistrationForm} from "../../components";
 class Register extends Component {
     render() { 
         return ( 
-            <>
-                <Grid container justify="center" alignItems="center" style={{height: "100vh"}}>
-                <UserRegistrationForm />
-                <Grid item xs={12}>
-                <Typography
-                            variant="h6"
-                            color="primary"
-                            align="center"
-                >
-                <Link to="/" style={{display: "flex", justifyContent: "center"}}>Back to log in</Link>
-                </Typography>
-                </Grid>
-                </Grid>
-            </>
+                
+                    <UserRegistrationForm />
+                
+                    
+               
          );
     }
 }

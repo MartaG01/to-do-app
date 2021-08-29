@@ -43,6 +43,8 @@ class RegistrationForm extends Component {
                 ...prevState,
                 inputTextInvalid: "Invalid input"
             })})
+
+            
         
             
         } else {
@@ -67,6 +69,7 @@ class RegistrationForm extends Component {
             .catch(error=>{
                 this.setState({error: error})
                 console.log("login error in catch")
+                
             });
             }
             
@@ -143,8 +146,8 @@ class RegistrationForm extends Component {
     
     render() { 
         return ( 
-            <Grid item container justify="center" alignItems="center" spacing={10}>
-                <Grid item xs={12}>
+            <Grid container justify="center" spacing={10} style={{maxWidth: "100%", overflowX: "hidden"}}>
+                <Grid item container justify="center" xs={12} >
                     <Typography
                                 variant="h4"
                                 color="primary"
@@ -154,9 +157,9 @@ class RegistrationForm extends Component {
                     </Typography>
 
                 </Grid>
-            
-            <form autoComplete="off" onSubmit={this.onSubmit} onReset={this.onReset} style={{display: "flex", justifyContent: "center", alignItems: "center", width: "20rem"}}>
-                <Grid container item justify="center" alignItems="center" spacing={1}>
+                
+            <form autoComplete="off" onSubmit={this.onSubmit} onReset={this.onReset} >
+            <Grid container item justify="center"  spacing={1}>
                 <Grid item xs={12}>
                     {this.InputField("username", "Name")}
                 </Grid>
@@ -195,14 +198,19 @@ class RegistrationForm extends Component {
                     color="primary">
                         Submit
                 </Button>
+                </Grid>
                 <Grid item container xs={12} justify="center">
                     {this.state.inputTextInvalid && <p style={{color: "red"}}>{this.state.inputTextInvalid}</p>}
                     {this.state.error&&<p style={{color: "red"}}>An error occured, please try again later</p>}
                 </Grid>
                 
                 </Grid>
-                </Grid>
+                
             </form>
+            
+                <Grid item container xs={12} justify="center" >
+                    <Link to="/" >Back to login</Link>
+                </Grid>
             </Grid>
          );
     }

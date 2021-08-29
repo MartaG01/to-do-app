@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {PasswordResetForm} from "../../components";
 
-class PassworReset extends Component {
+class PasswordReset extends Component {
     state = {  }
     render() { 
         return ( 
@@ -10,4 +10,4 @@ class PassworReset extends Component {
     }
 }
  
-export default PassworReset;
+export default PasswordReset;

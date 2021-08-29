@@ -34,13 +34,23 @@ class PasswordResetForm extends Component {
         event.preventDefault();
         if (this.state.email===""|| !this.state.email.includes("@")){
             this.setState({invalidInputText: "Invalid input"})
+            Array.from(document.querySelectorAll("input")).forEach(
+                input=>(input.value="")
+            );
         } else {
             this.props.firebase.passwordReset(this.state.email).then(()=>{
                 this.setState({...initialState})
                 this.props.history.push("/")
             }).catch(error=>{
-                this.setState({error});
+                this.setState({...initialState,
+                                invalidInputText: "This email address is not registered in our database"});
+                
+                // Array.from(document.querySelectorAll("input")).forEach(
+                //     input=>(input.value="")
+              
+                // );
             });
+        
         }
     }
 
@@ -50,13 +60,14 @@ class PasswordResetForm extends Component {
 
     render() { 
         return ( 
-            <Grid container alignItems="center" justify="center" style={{height: "100vh"}}>
+            <Grid container alignItems="center" justify="center" style={{height: "100vh"}} >
+                <form onSubmit={this.onSubmit} autoComplete="off">
                 <Grid item container xs={12} justify="center">
                     <this.ResetText />
                 </Grid>
-                <Grid item container xs={12} justify="center">
-                <Grid item container xs={12} justify="center">
-                    <form autoComplete="off" onSubmit={this.onSubmit}>
+                
+                <Grid item container xs={12} justify="center" style={{padding: "1rem"}}>
+                    
                         <TextField
                             label="Type in your email address"
                             variant="outlined"
@@ -66,10 +77,10 @@ class PasswordResetForm extends Component {
                             onChange={this.onChange}
                             required
                         />
-                    </form>
+                    
                     
                 </Grid>
-                <Grid item container xs={12} justify="center" style={{paddingTop: 20}}>
+                <Grid item container xs={12} justify="center" style={{padding: "1rem"}}>
                     <Button
                             variant="contained"
                             type="submit"
@@ -79,16 +90,16 @@ class PasswordResetForm extends Component {
                         
                     </Button>
                 </Grid>
+                {/* </Grid> */}
+                <Grid item container xs={12} justify="center" style={{color: "red", textAlign: "center"}}>
+                    {this.state.invalidInputText&&<span>{this.state.invalidInputText}</span>}
+                    {this.state.error&&<span>{this.state.error.message}</span>}
                 </Grid>
-                <Grid item container xs={12} justify="center">
-                    {this.state.invalidInputText&&<p>Invalid email</p>}
-                    {this.state.error&&<p>Error, please try again later</p>}
-                </Grid>
-                <Grid item container xs={12} justify="center">
+                <Grid item container xs={12} justify="center" style={{padding: "1rem"}}>
                     <Link to="/">Back to log in</Link>
                 </Grid>
                 
-                
+                </form>
             </Grid>
          );
     }

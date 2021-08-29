@@ -25,14 +25,17 @@ class AddTaskElement extends Component {
  
          }
     }
+
     
     
     addTask=(event)=>{
         event.preventDefault();
-        
+        this.props.addTaskCallback();
         this.props.firebase.db.collection(this.props.firebase.auth.currentUser.uid).add({
             ...this.state
         })
+
+        
             
         
         

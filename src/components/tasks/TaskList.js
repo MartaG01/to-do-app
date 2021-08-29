@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 
 import EditIcon from '@material-ui/icons/Edit';
-import { Description } from '@material-ui/icons';
+
 import { Grid, List, ListItem, Typography } from '@material-ui/core';
 
 
@@ -107,15 +107,71 @@ const TaskList=(props)=>{
                 <List>
                     
                     {tasks.map((elem)=>(
-                
+
+                        
                         <ListItem key={elem.id}>
                             {editValue===elem.id ? 
+                            <Grid item container justify="center" spacing={2}
+                            // container spacing={5} justify="center" style={{marginTop: "2rem", width: "100vw", display: "flex"}}
+                            >
+                            <form autoComplete="off" >
+                            <Grid item container justify="center" alignItems="center" direction="column" xs={12} spacing={2}>
+                            <Grid item container xs={12} 
+                            // item container xs={12} md={3}
+                            >
+                            <TextField 
+                            label="due date"
+                            type="text" 
+                            name="date" 
+                            color="primary"
+                            onFocus={(e)=>{e.target.type="date"}}
+                            onBlur={(e)=>{e.target.type="text"}}
+                            value={taskDate} 
+                            onChange={(event)=>(setTaskDate(event.target.value))}
+                            variant="outlined"
                             
-                            <form autoComplete="off">
-                            <TextField type={dateInput} disabled={false} value={taskDate} onChange={(event)=>(setTaskDate(event.target.value))}/>
-                            <TextField type="text" value={title} onChange={(event)=>(setTitle(event.target.value))}/>
-                            <TextField type="text" value={description} onChange={(event)=>(setDescription(event.target.value))}/> 
+                            // type={dateInput} disabled={false} value={taskDate} onChange={(event)=>(setTaskDate(event.target.value))}
                             
+                            />
+                            </Grid>
+                            <Grid item container xs={12} 
+                            //  item container xs={12} md={3}
+                             >
+                            <TextField 
+                            label="task title" 
+                            type="text" 
+                            multiline
+                            rows={8}
+                            name="title" 
+                            value={title} 
+                            onChange={(event)=>(setTitle(event.target.value))}
+                            variant="outlined"
+                            style={{width: "100%"}}
+                            // type="text" value={title} onChange={(event)=>(setTitle(event.target.value))}
+                            />
+                            </Grid>
+                            <Grid item container xs={12} 
+                            // item container xs={12} md={3}
+                            >
+                            <TextField 
+                            label="description" 
+                            type="text" 
+                            multiline
+                            rows={8}
+                            name="description" 
+                            value={description} 
+                            onChange={(event)=>(setDescription(event.target.value))}
+                            variant="outlined"
+                            style={{width: "100%"}}
+                            
+                            
+                            // type="text" value={description} onChange={(event)=>(setDescription(event.target.value))}
+                            /> 
+                            </Grid>
+                            
+                            <Grid item container xs={12} justify="center"
+                            // item container xs={12} md={3}
+                            >
                             <Button
                                 variant="contained"
                                 endIcon={<EditIcon />}
@@ -124,31 +180,61 @@ const TaskList=(props)=>{
                             >
                                 {editButton}
                             </Button>
-                            </form>   
+                            </Grid>
+                            </Grid>
+                            </form> 
+                            </Grid>  
                             
                              : 
                              <Grid container spacing={5} justify="center" style={{marginTop: "2rem", width: "100vw", display: "flex"}}>
                                  <Grid item container xs={12} md={6} style={{padding: "2rem"}} justify="center">
-                                    <Grid item container xs={12} md={6} justify="center">
-                                        <Typography>
-                                        Title: {elem.data().title}
+                                    <Grid item container xs={12} md={6} justify="center" style={{ display: "flex", overflow: "auto", wordWrap: "break-word"}}>
+                                        <Typography
+                                        component="span"
+                                        color="primary"
+                                        gutterBottom
+                                        variant="h4"
+                                        style={{whiteSpace: "pre-wrap", textAlign: "center"}}
+                                        >
+                                        {elem.data().title}
                                         </Typography>
                                     </Grid>
                                     <Grid item container xs={12} md={6} justify="center">
-                                    <Typography>
+                                    
+                                       {Math.floor((new Date(Date.parse(elem.data().date))-date)/86400000)+1 >= 0 ? <Typography
+                                    color="secondary"
+                                    component="span"
+                                    >
+                                        Days left: {Math.floor((new Date(Date.parse(elem.data().date))-date)/86400000)+1}
+                                    </Typography> 
+                                    : 
+                                    <Typography
+                                    color="secondary"
+                                    component="span"
+                                    >
+                                        Past due date: {Math.abs(Math.floor((new Date(Date.parse(elem.data().date))-date)/86400000)+1)} days
+                                    </Typography>}
+                                    
+                                    </Grid>
+                                    <Grid item container xs={12} md={6} justify="center">
+                                    <Typography
+                                        component="span"
+                                    >
                                         Due date: {elem.data().date}
                                     </Typography>
                                     </Grid>
-                                    <Grid item container xs={12} md={6} justify="center">
+                                    <Grid item container xs={12} md={6} justify="center" style={{ display: "flex", overflow: "auto", wordWrap: "break-word" }}>
                                         <Typography > 
-                                            <Typography align="center">Description: </Typography> 
-                                            <Typography >{elem.data().description}</Typography>
+                                           
+                                            <Typography 
+                                            color="primary" 
+                                            style={{whiteSpace: "pre-wrap"}} 
+                                            component="span"                                       
+                                            >{elem.data().description}</Typography>
                                         </Typography>
                                         
                                     </Grid>
-                                    <Grid item container xs={12} md={6} justify="center">
-                                        Days left: {Math.floor((new Date(Date.parse(elem.data().date))-date)/86400000)+1}
-                                    </Grid>
+                                    
                                  </Grid>
                                 
                                 <Grid item container xs={12} md={4} spacing={2} justify="center" alignItems="center">
@@ -158,16 +244,18 @@ const TaskList=(props)=>{
                                             endIcon={<RemoveCircleIcon />}
                                             onClick={()=>{removeTask(elem.id)}}
                                             color="primary"
+                                            
                                             >
                                             remove
                                         </Button>
                                     </Grid>
-                                    <Grid item container justify="center" xs={12} md={3}>
+                                    <Grid item container justify="center" xs={12} md={3} >
                                         <Button
                                             variant="contained"
                                             endIcon={<EditIcon />}
                                             onClick={()=>{editTask(elem.id)}}
                                             color="primary"
+                                            
                                         >
                                         Edit
                                         </Button>

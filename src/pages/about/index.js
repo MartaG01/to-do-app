@@ -8,7 +8,7 @@ class About extends Component {
 
     AboutText(){
         return(
-            <Grid container justify="center" alignItems="center" spacing={7} style={{padding: "4rem 2rem"}}> 
+            <Grid container justify="center" alignItems="center" spacing={7} style={{padding: "4rem 2rem", width: "100vw", height: "100vh"}}> 
                 <Grid item container justify="center" xs={12}>
                     <Typography variant="h3" color="primary">About this page and the authors</Typography>
                 </Grid>

@@ -60,10 +60,10 @@ class SignInForm extends Component {
     
     render() { 
         return ( 
-            <>         
+            <Grid item container xs={12} style={{padding: 10}} justify="center">         
             <form autoComplete="off" onSubmit={this.onSubmit}>
                 <Grid item xs={12} style={{padding: 10}}>
-                {this.LoginFormField("email", "text")}
+                {this.LoginFormField("email", "email")}
                 </Grid>
                 <Grid item xs={12} style={{padding: 10}}>
                 {this.LoginFormField("password", "password")}
@@ -77,10 +77,12 @@ class SignInForm extends Component {
                 </Button>
                 </Grid>
             </form>
+            <Grid item container justify="center" style={{color: "red"}}>
+                {this.state.invalidText&&<p>{this.state.invalidText}</p>}
+                {this.state.error&&<p>{this.state.error.message}</p>}
+            </Grid>
             
-            {this.state.invalidText&&<p>{this.state.invalidText}</p>}
-            {this.state.error&&<p>{this.state.error.message}</p>}
-            </>
+            </Grid>
          );
     }
 }

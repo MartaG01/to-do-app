@@ -9,8 +9,13 @@ class TaskCreation extends Component {
         super(props)
         this.state={
             displayButton: "flex",
-            displayForm: "none"
+            displayForm: "none",
+            data: "from child"
         }
+    }
+
+    handleTaskAdd=()=>{
+        this.setState({displayButton: "flex", displayForm: "none"})
     }
 
     render() { 
@@ -29,7 +34,7 @@ class TaskCreation extends Component {
                 <Grid item container xs={12} justify="center">
                     
                     <Grid item container xs={12} justify="center">
-                        <AddTask/>
+                        <AddTask addTaskCallback={this.handleTaskAdd}/>
                     </Grid>
                     <Grid item container xs={12} justify="center" alignItems="center">
                         <Button 
