@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {withAuth} from "../../components/userAuth";
-import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -63,7 +62,7 @@ class AddTaskElement extends Component {
             <Grid item container justify="center" alignItems="center" direction="column" xs={12} spacing={2}>
                 <Grid item>
                 <TextField 
-                // helperText="Set due date" 
+                
                 label="due date"
                 type="text" 
                 name="date" 

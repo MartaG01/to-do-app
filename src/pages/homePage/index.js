@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AddTask, SignOut, TaskList, TaskCreation} from "../../components";
+import {SignOut, TaskList, TaskCreation} from "../../components";
 import {withAuth} from "../../components/userAuth";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from '@material-ui/core';
@@ -31,7 +31,6 @@ class HomePage extends Component {
             <Grid item container xs={12}  justify="center">
                 <TaskList />
             </Grid>
-            {/* <AddTask /> */}
             
             </Grid>
          );

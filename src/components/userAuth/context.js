@@ -33,8 +33,6 @@ const withAuth= (Component) => {
         }
         render(){
           return (
-            
-            // <TestingContext />
             <AuthUserContext.Provider value={this.state.authUser}>
               <Component {...this.props} />
 

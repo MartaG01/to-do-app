@@ -21,7 +21,7 @@ class TaskCreation extends Component {
     render() { 
         return ( 
             <Grid item container justify="center">
-                {this.state.displayButton=="flex"?
+                {this.state.displayButton==="flex"?
                 <Button 
                 variant="contained" 
                 color="primary" 

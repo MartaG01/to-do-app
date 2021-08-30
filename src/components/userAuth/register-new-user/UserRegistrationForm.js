@@ -32,6 +32,7 @@ class RegistrationForm extends Component {
     }
     onCheck=()=>{
         this.state.checkboxCheck === true ? this.setState({checkboxCheck: false}) : this.setState({checkboxCheck: true})
+        console.log(this.state.checkboxCheck)
     }
 
 
@@ -48,7 +49,6 @@ class RegistrationForm extends Component {
         
             
         } else {
-            console.log("form submitted")
             this.props.firebase.createUser(this.state.email, this.state.passwordOne).then(authUser=>{
                 
                 let user=authUser.user.uid
@@ -63,12 +63,12 @@ class RegistrationForm extends Component {
                 })
                 .catch((error)=>{
                     this.setState({error: error});
-                    console.log("login error")
+                    
                 })
             })
             .catch(error=>{
                 this.setState({error: error})
-                console.log("login error in catch")
+    
                 
             });
             }
@@ -146,7 +146,7 @@ class RegistrationForm extends Component {
     
     render() { 
         return ( 
-            <Grid container justify="center" spacing={10} style={{maxWidth: "100%", overflowX: "hidden"}}>
+            <Grid container justify="center" spacing={10} style={{maxWidth: "100%", overflowX: "hidden", margin: "0"}}>
                 <Grid item container justify="center" xs={12} >
                     <Typography
                                 variant="h4"
@@ -200,9 +200,14 @@ class RegistrationForm extends Component {
                 </Button>
                 </Grid>
                 <Grid item container xs={12} justify="center">
-                    {this.state.inputTextInvalid && <p style={{color: "red"}}>{this.state.inputTextInvalid}</p>}
-                    {this.state.error&&<p style={{color: "red"}}>An error occured, please try again later</p>}
+                    {this.state.inputTextInvalid && <div style={{color: "red"}}>{this.state.inputTextInvalid}</div>}
                 </Grid>
+
+                <Grid item container xs={12} justify="center">
+                    {this.state.error&&<div style={{color: "red", padding: "0.5rem"}}>An error occured, your email address is probably already registered in our database</div>}
+                </Grid>
+
+                
                 
                 </Grid>
                 

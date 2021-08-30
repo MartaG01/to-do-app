@@ -45,10 +45,6 @@ class PasswordResetForm extends Component {
                 this.setState({...initialState,
                                 invalidInputText: "This email address is not registered in our database"});
                 
-                // Array.from(document.querySelectorAll("input")).forEach(
-                //     input=>(input.value="")
-              
-                // );
             });
         
         }
@@ -90,7 +86,6 @@ class PasswordResetForm extends Component {
                         
                     </Button>
                 </Grid>
-                {/* </Grid> */}
                 <Grid item container xs={12} justify="center" style={{color: "red", textAlign: "center"}}>
                     {this.state.invalidInputText&&<span>{this.state.invalidInputText}</span>}
                     {this.state.error&&<span>{this.state.error.message}</span>}

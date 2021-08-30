@@ -1,18 +1,14 @@
-import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
-import {TestingContext} from "./components/testing/TestContext";
 import {About, Contact, Home, LandingPage, PasswordReset, Register, Policyterms} from "./pages";
 
 
 const App =()=> {
               
   return (
-              
-              // <TestingContext />
               
     <Router>
       <Switch>

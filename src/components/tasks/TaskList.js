@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {withAuth} from "../../components/userAuth";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -60,15 +60,6 @@ const TaskList=(props)=>{
         
     }
     
-    
-    useEffect(()=>{
-        
-        tasks && console.log("tasks update")
-            console.log(date)
-        
-        
-        
-    },[tasks])
 
    
 
@@ -112,12 +103,12 @@ const TaskList=(props)=>{
                         <ListItem key={elem.id}>
                             {editValue===elem.id ? 
                             <Grid item container justify="center" spacing={2}
-                            // container spacing={5} justify="center" style={{marginTop: "2rem", width: "100vw", display: "flex"}}
+                            
                             >
                             <form autoComplete="off" >
                             <Grid item container justify="center" alignItems="center" direction="column" xs={12} spacing={2}>
                             <Grid item container xs={12} 
-                            // item container xs={12} md={3}
+                            
                             >
                             <TextField 
                             label="due date"
@@ -129,14 +120,9 @@ const TaskList=(props)=>{
                             value={taskDate} 
                             onChange={(event)=>(setTaskDate(event.target.value))}
                             variant="outlined"
-                            
-                            // type={dateInput} disabled={false} value={taskDate} onChange={(event)=>(setTaskDate(event.target.value))}
-                            
                             />
                             </Grid>
-                            <Grid item container xs={12} 
-                            //  item container xs={12} md={3}
-                             >
+                            <Grid item container xs={12}>
                             <TextField 
                             label="task title" 
                             type="text" 
@@ -147,12 +133,9 @@ const TaskList=(props)=>{
                             onChange={(event)=>(setTitle(event.target.value))}
                             variant="outlined"
                             style={{width: "100%"}}
-                            // type="text" value={title} onChange={(event)=>(setTitle(event.target.value))}
                             />
                             </Grid>
-                            <Grid item container xs={12} 
-                            // item container xs={12} md={3}
-                            >
+                            <Grid item container xs={12}>
                             <TextField 
                             label="description" 
                             type="text" 
@@ -163,15 +146,10 @@ const TaskList=(props)=>{
                             onChange={(event)=>(setDescription(event.target.value))}
                             variant="outlined"
                             style={{width: "100%"}}
-                            
-                            
-                            // type="text" value={description} onChange={(event)=>(setDescription(event.target.value))}
                             /> 
                             </Grid>
                             
-                            <Grid item container xs={12} justify="center"
-                            // item container xs={12} md={3}
-                            >
+                            <Grid item container xs={12} justify="center">
                             <Button
                                 variant="contained"
                                 endIcon={<EditIcon />}

@@ -1,8 +1,6 @@
 import { Button, Grid, TextField, Typography } from '@material-ui/core';
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import {TextareaAutosize} from "@material-ui/core"
-import { ContactSupportOutlined } from '@material-ui/icons';
 import { withFirebase } from '../../components/firebase';
 
 
